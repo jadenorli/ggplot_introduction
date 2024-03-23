@@ -1,0 +1,70 @@
+---
+title: "ggplot_introduction_tutorial"
+author: "Jaden Orli"
+date: "2024-03-22"
+output: html_document
+---
+
+# What is ggplot?
+ggplot is a package within the tidyverse that can be used to create graphics based on the Grammar of Graphics. This tutorial will look at some of the basics of this package. More information can be found on the tidyverse site (https://ggplot2.tidyverse.org/) or in the included PDF.
+
+# Install and Load Packages
+```{r}
+#unhastag the two lines below to install tidyverse and ggplot2
+#install.packages("tidyverse")
+#install.packages("ggplot2")
+
+#load in the packages
+library(tidyverse)
+library(ggplot2)
+
+##ggplot2 is included within the core packages of tidyverse so this step is redundant 
+```
+
+
+# Iris Dataset
+This dataset gives the measurements of the sepal length, sepal width and petal width for 50 flowers from species of iris (iris setosa, iris versicolor, and iris virginica) 
+```{r}
+#load in the base R dataset iris
+data(iris)
+
+#view the dataframe
+#View(iris)
+
+```
+
+
+Let us look at some of the basics in ggplot using the iris dataset
+
+# Steps
+
+At the core you must give ggplot three things:
+  1. data: the dataframe which contains the data you want to visualize 
+  2. aesthetics: the variables which are mapped onto the graph and how they are mapped onto the graph (which variables correspond to the x-axis and the y-axis )
+  3. geometry: the type of visualization you want to generate (scatterplot, barplot, line, etc) 
+
+## 1. Core Commands
+  1. data (command: data =)
+  2. aesthetics (command aes(x =, y =))
+  3. geometry: (command geom_)
+```{r}
+#lets look at the 1. iris dataframe and 2. the variables x = sepal.length and y = sepal.width and 3. lets visualize this with a scatterplot
+ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width)) + #the first line identifies which dataframe we are using and which variables we want to map onto our graph
+  geom_point() #this second line defines how we want to visualize these variables and we use a + (plus sign) to add geometry
+
+```
+
+
+## 2. More Aesthetics
+
+We can map additional aesthetics within the geometry to help us visualize more variables from our dataset
+
+```{r}
+#lets build on the above graph by assigning a color to each datapoint based on the species
+ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width)) + 
+  geom_point(aes(color = Species)) #adding in color = species allows us to assign different colors to different species and have this reflected in our scatterplot
+
+```
+
+We can now visualize the relationship between sepal width and sepal length for each species 
+
